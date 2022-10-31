@@ -1,0 +1,25 @@
+{
+  "name": "bookcation",
+  "version": "1.0.0",
+  "description": "Airbnb clone - book staycation/vacation rentals",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/polekstulod/bookcation.git"
+  },
+  "keywords": [
+    "airbnb",
+    "nodejs",
+    "ejs",
+    "mongodb"
+  ],
+  "author": "James Paul L. Tulod",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/polekstulod/bookcation/issues"
+  },
+  "homepage": "https://github.com/polekstulod/bookcation#readme"
+}
