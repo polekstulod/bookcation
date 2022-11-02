@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include ('../partials/head') %>
+  <body>
+    <%- include ('../partials/nav') %>
+
+    <div class="container">
+      <div class="section">
+        <div class="row">
+          <% for (const listing of data) { %>
+
+          <div class="col s12 m3">
+            <div class="card">
+              <div class="card-image">
+                <img src="<%= listing.image %>" class="img-small" />
+                <a class="btn-floating halfway-fab waves-effect waves-light red"
+                  ><i class="material-icons">remove_red_eye</i></a
+                >
+              </div>
+              <div class="card-content">
+                <span class="card-title"><%= listing.name %> </span>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod
+                  nihil, velit debitis nulla exercitationem obcaecati maxime
+                  quae reprehenderit eveniet dolorem nam adipisci ipsum odit ex
+                  quam, molestiae, alias porro illum!
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <% } %>
+        </div>
+      </div>
+      <br /><br />
+    </div>
+
+    <%- include ('../partials/footer') %>
+  </body>
+</html>

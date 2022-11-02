@@ -7,6 +7,7 @@ const path = require('path');
 // ? variables
 const app = express();
 const port = 3000;
+const Listing = require('./models/listing');
 
 // ? Middlewares
 app.use(express.urlencoded({ extended: true }));
@@ -24,7 +25,21 @@ app.set('views', path.join(__dirname, '/views'));
 
 // ? Routes
 // >> Home Route
-app.get('/', (req, res) => res.render('home', { title: 'Home' }));
+app.get('/', (req, res) => {
+  res.redirect('/listings');
+  // res.render('home', { title: 'Home' })
+});
+
+// >> Listings Route
+app.get('/listings', async (req, res) => {
+  const data = await Listing.find();
+  res.render('listings', { title: 'Listings', data });
+});
+
+app.get('/listing/:id', async (req, res) => {
+  const data = await Listing.findById(req.params.id);
+  res.render('listings/listing', { title: data.name, data });
+});
 
 // ? Handle 404
 app.use((req, res, next) => {
