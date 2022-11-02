@@ -26,5 +26,10 @@ app.set('views', path.join(__dirname, '/views'));
 // >> Home Route
 app.get('/', (req, res) => res.render('home', { title: 'Home' }));
 
+// ? Handle 404
+app.use((req, res, next) => {
+  res.status(404).render('404', { title: '404 Not Found' });
+});
+
 // ? Server
 app.listen(port, () => console.log(`App listening on port ${port}!`));
