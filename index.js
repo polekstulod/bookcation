@@ -52,6 +52,20 @@ app.post('/listings', async (req, res) => {
   res.redirect('/listings');
 });
 
+app.get('/listings/:id/edit', async (req, res) => {
+  const data = await Listing.findById(req.params.id);
+  res.render('listings/edit', { title: data.name, data });
+});
+
+app.put('/listings/:id', async (req, res) => {
+  const { id } = req.params;
+  const listing = await Listing.findByIdAndUpdate(id, req.body, {
+    runValidators: true,
+    new: true,
+  });
+  res.redirect(`/listing/${listing._id}`);
+});
+
 // ? Handle 404
 app.use((req, res, next) => {
   res.status(404).render('404', { title: '404 Not Found' });
