@@ -41,6 +41,17 @@ app.get('/listing/:id', async (req, res) => {
   res.render('listings/listing', { title: data.name, data });
 });
 
+app.get('/listings/new', (req, res) => {
+  res.render('listings/new', { title: 'New Listing' });
+});
+
+app.post('/listings', async (req, res) => {
+  const listing = new Listing(req.body);
+
+  await listing.save();
+  res.redirect('/listings');
+});
+
 // ? Handle 404
 app.use((req, res, next) => {
   res.status(404).render('404', { title: '404 Not Found' });
