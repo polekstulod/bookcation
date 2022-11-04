@@ -19,6 +19,14 @@
         </div>
       </div>
       <div id="map"></div>
+      <!-- edit and delete button -->
+      <div class="section">
+        <div class="row">
+          <a href="/listings/<%= data._id %>/edit" class="btn btn-primary">Edit</a>
+          <form action="/listings/<%= data._id %>?_method=DELETE" method="POST">
+            <input type="submit" value="Delete" class="btn btn-danger" />
+          </form>
+        </div>
       <br /><br />
     </div>
     <%- include ('../partials/script') %>
