@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Listing = require('../models/listing');
+const cities = require('./cities');
 const fetch = require('node-fetch');
 
 mongoose.connect('mongodb://localhost:27017/bookcation');
@@ -41,9 +42,9 @@ const seedDB = async () => {
           : imageLinks[i].description,
       price: Math.floor(Math.random() * 10000) + 10,
       image: imageLinks[i].image,
-      address: `${data.address.street_name} ${data.address.street_address} ${data.address.city} ${data.address.state} ${data.address.zip_code} ${data.address.country}`,
-      lat: data.address.coordinates.lat,
-      lng: data.address.coordinates.lng,
+      address: `${data.address.street_name} ${data.address.street_address} ${cities[i].city} ${cities[i].admin_name} ${data.address.zip_code} ${cities[i].country}`,
+      lat: cities[i].lat,
+      lng: cities[i].lng,
       createdAt: data.date_of_birth,
     });
     await listing.save();
