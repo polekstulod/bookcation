@@ -72,6 +72,14 @@ app.delete('/listings/:id', async (req, res) => {
   res.redirect('/listings');
 });
 
+app.post('/listings/:id/reviews', async (req, res) => {
+  const { id } = req.params;
+  const listing = await Listing.findById(id);
+  listing.review.push(req.body);
+  await listing.save();
+  res.redirect(`/listing/${listing._id}`);
+});
+
 // ? Handle 404
 app.use((req, res, next) => {
   res.status(404).render('404', { title: '404 Not Found' });

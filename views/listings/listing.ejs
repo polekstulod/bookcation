@@ -19,29 +19,67 @@
         </div>
       </div>
       <div id="map"></div>
+
+      <div class="section">
+        <div class="row">
+          <h2>Reviews</h2>
+          <h3>Add a review</h3>
+          <form action="/listings/<%= data._id %>/reviews" method="POST">
+            <div class="input-field">
+              <input type="text" name="username" id="username" />
+              <label for="username">Username</label>
+            </div>
+            <div class="input-field">
+              <textarea
+                name="review"
+                id="review"
+                class="materialize-textarea"
+              ></textarea>
+              <label for="review">Review</label>
+            </div>
+            <button class="btn waves-effect waves-light" type="submit">
+              Submit
+              <i class="material-icons right">send</i>
+            </button>
+          </form>
+          <ul class="collection">
+            <% data.review.forEach(function(review) { %>
+            <li class="collection-item">
+              <h5>
+                <i class="material-icons">account_circle</i> <%= review.username
+                %>
+              </h5>
+              <p><%= review.review %></p>
+            </li>
+            <% }) %>
+          </ul>
+        </div>
+      </div>
       <!-- edit and delete button -->
       <div class="section">
         <div class="row">
-          <a href="/listings/<%= data._id %>/edit" class="btn btn-primary">Edit</a>
+          <a href="/listings/<%= data._id %>/edit" class="btn btn-primary"
+            >Edit</a
+          >
           <form action="/listings/<%= data._id %>?_method=DELETE" method="POST">
             <input type="submit" value="Delete" class="btn btn-danger" />
           </form>
         </div>
-      <br /><br />
+      </div>
+      <%- include ('../partials/script') %>
+      <script>
+        const lat = '<%= data.lat %>';
+        const lng = '<%= data.lng %>';
+
+        var map = L.map('map').setView([lat, lng], 17);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 19,
+          attribution:
+            '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        }).addTo(map);
+
+        var marker = L.marker([lat, lng]).addTo(map);
+      </script>
     </div>
-    <%- include ('../partials/script') %>
-    <script>
-      const lat = '<%= data.lat %>';
-      const lng = '<%= data.lng %>';
-
-      var map = L.map('map').setView([lat, lng], 17);
-      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution:
-          '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-      }).addTo(map);
-
-      var marker = L.marker([lat, lng]).addTo(map);
-    </script>
   </body>
 </html>
