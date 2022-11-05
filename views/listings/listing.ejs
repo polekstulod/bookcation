@@ -42,6 +42,9 @@
               <i class="material-icons right">send</i>
             </button>
           </form>
+          <% if (data.review.length === 0) { %>
+          <p>No reviews yet</p>
+          <% } else { %>
           <ul class="collection">
             <% data.review.forEach(function(review) { %>
             <li class="collection-item">
@@ -53,6 +56,7 @@
             </li>
             <% }) %>
           </ul>
+          <% } %>
         </div>
       </div>
       <!-- edit and delete button -->
