@@ -45,6 +45,12 @@ const seedDB = async () => {
       address: `${data.address.street_name} ${data.address.street_address} ${cities[i].city} ${cities[i].admin_name} ${data.address.zip_code} ${cities[i].country}`,
       lat: cities[i].lat,
       lng: cities[i].lng,
+      review: [
+        {
+          username: data.username,
+          review: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+        },
+      ],
       createdAt: data.date_of_birth,
     });
     await listing.save();
